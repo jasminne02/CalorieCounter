@@ -55,9 +55,9 @@
                             <h3>{{ food_searched_object.name }}</h3>
                             <p>{{ food_searched_object.calories|floatformat:0 }}cal
                                 per {{ food_searched_object.grams|floatformat:0 }}grams</p>
-                            <p>{{ food_searched_object.carbs_grams|floatformat:0 }}gr. carbs</p>
-                            <p>{{ food_searched_object.protein_grams|floatformat:0 }}gr. protein</p>
-                            <p>{{ food_searched_object.fats_grams|floatformat:0 }}gr fats</p>
+                            <p>{{ food_searched_object.carbs_grams|floatformat:1 }}gr. carbs</p>
+                            <p>{{ food_searched_object.protein_grams|floatformat:1 }}gr. protein</p>
+                            <p>{{ food_searched_object.fats_grams|floatformat:1 }}gr fats</p>
                         {% else %}
                             <div id="blank-info"></div>
                             <div id="blank-info"></div>
