@@ -1,4 +1,5 @@
 import datetime
+from calendar import monthrange
 
 from django.shortcuts import render, redirect
 
@@ -11,11 +12,29 @@ from CalorieCounter.calorie_counter.forms import SearchFoodForm, SearchActivityF
 def get_weekly_data(user):
     try:
         today = datetime.date.today()
-        return DailyData.objects. \
+        if today.day - 7 > 0:
+            return DailyData.objects. \
+                filter(user_id=user.id,
+                       date__lte=today,
+                       date__gt=datetime.date(today.year, today.month, today.day - 7)) \
+                .order_by('date')
+
+        previous_month = today.month - 1
+        year = today.year if previous_month > 1 else today.year - 1
+        left_days_count = 7 - today.day
+        total_days_previous_month = monthrange(today.year, previous_month)[1]
+        data_current_month = DailyData.objects. \
             filter(user_id=user.id,
                    date__lte=today,
-                   date__gt=datetime.date(today.year, today.month, today.day - 7)) \
+                   date__gt=datetime.date(today.year, today.month, today.day - today.day + 1)) \
             .order_by('date')
+
+        data_previous_month = DailyData.objects. \
+            filter(user_id=user.id,
+                   date__lte=today,
+                   date__gt=datetime.date(year, previous_month,  total_days_previous_month - left_days_count)) \
+            .order_by('date')
+        return data_current_month | data_previous_month
     except DailyData.DoesNotExist:
         return None
 
