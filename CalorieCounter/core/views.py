@@ -1,4 +1,3 @@
-from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
