@@ -78,14 +78,13 @@ class CustomUser(AbstractUser):
         null=True,
     )
 
-    REQUIRED_FIELDS = ['birthday', 'gender', 'height']
+    REQUIRED_FIELDS = ['birthday', 'gender', 'height', 'weight']
 
     @property
     def age(self):
         today = datetime.date.today()
-        age_date = today - self.birthday
         age = today.year - self.birthday.year
-        if self.birthday > (today - age_date):
+        if self.birthday.month > today.month or self.birthday.month == today.month and self.birthday.day > today.day:
             age -= 1
         return age
 
