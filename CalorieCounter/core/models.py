@@ -168,7 +168,7 @@ class FoodPlan(models.Model):
             protein += meal.protein_grams
         for f in self.food.all():
             protein += f.protein_per_100g
-        return str(protein)
+        return protein
 
     @property
     def carbs_grams(self):
@@ -177,7 +177,7 @@ class FoodPlan(models.Model):
             carbs += meal.carbs_grams
         for f in self.food.all():
             carbs += f.carbs_per_100g
-        return str(carbs)
+        return carbs
 
     def __str__(self):
         return self.name
