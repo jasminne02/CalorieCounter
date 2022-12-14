@@ -45,6 +45,9 @@ def add_activity(request, pk):
     activity_object = Exercise.objects.get(pk=pk)
     form = AddActivityForm()
 
+    if activity_object is None:
+        return render(request, '404.html')
+
     if request.method == 'POST':
         form = AddActivityForm(request.POST)
         if form.is_valid():
@@ -70,8 +73,11 @@ def add_activity(request, pk):
 
 def add_food(request, name):
     user = CustomUser.objects.get(username=request.user.username)
-    food_object = food_search_query(name)
+    food_object = get_food_or_meal_by_name(name)
     form = AddFoodForm()
+
+    if food_object is None:
+        return render(request, '404.html')
 
     if request.method == 'POST':
         form = AddFoodForm(request.POST)

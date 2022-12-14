@@ -101,6 +101,20 @@ def food_search_query(searched):
             return 'No search results'
 
 
+def get_food_or_meal_by_name(name):
+    try:
+        searched = Food.objects.get(name=name)
+        if searched is not None:
+            return searched
+    except Food.DoesNotExist:
+        try:
+            searched = Meal.objects.get(name=name)
+            if searched is not None:
+                return searched
+        except Meal.DoesNotExist:
+            return None
+
+
 def activity_search_query(searched):
     searched = Exercise.objects.filter(name__icontains=searched)
     if searched.count() > 0:
