@@ -17,6 +17,9 @@
                     <div class="data">
                         {{ form.password|placeholder:'Password' }}
                     </div>
+                    {% if form.errors %}
+                        <p>Please enter a correct username and password</p>
+                    {% endif %}
                     <div class="btn">
                         <div class="inner"></div>
                         <button type="submit">login</button>
