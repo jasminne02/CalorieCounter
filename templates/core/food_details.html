@@ -9,7 +9,9 @@
                 <div class="plan-header">
                     <div class="left">
                         <img class="food-img" src="{{ foodplan.image_url }}" alt='food image'/>
-                        <a href="{% url 'add plan for the day' pk=foodplan.pk %}" class="add-button">Add for the day</a>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'add plan for the day' pk=foodplan.pk %}" class="add-button">Add for the day</a>
+                        {% endif %}
                     </div>
                     <div class="right">
                         <h1>{{ foodplan.name }}</h1>
