@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-i4=1-1h(gfi9-ely*gqm&z&j!x*9#!pqs#!)b+@2^qkbla!bsq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # ‘secure’ cookies.
 SESSION_COOKIE_SECURE = True
