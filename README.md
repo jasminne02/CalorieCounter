@@ -1,0 +1,2 @@
+[![My Tech Stack](https://github-readme-tech-stack.vercel.app/api/cards?title=Technologies%20used&lineCount=2&line1=django,Django,000000;html5,html5,ff330f;css3,css3,6000f0;PostgreSQL,PostgreSQL,000000;&line2=Chart.js,Chart.js,000000;)](https://github-readme-tech-stack.vercel.app/api/cards?title=Technologies%20used&lineCount=2&line1=django,Django,000000;html5,html5,ff330f;css3,css3,6000f0;PostgreSQL,PostgreSQL,000000;&line2=Chart.js,Chart.js,000000;)
+
