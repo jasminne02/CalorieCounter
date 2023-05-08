@@ -20,6 +20,8 @@ def show_calorie_counter(request):
             if food_search_form.is_valid():
                 searched = food_search_form.cleaned_data['name']
                 food_searched_object = food_search_query(searched)
+                if food_searched_object:
+                    food_searched_object = create_food_in_db(food_searched_object)
         elif 'search-activity' in request.POST:
             activity_search_form = SearchActivityForm(request.POST)
             if activity_search_form.is_valid():
@@ -73,7 +75,7 @@ def add_activity(request, pk):
 
 def add_food(request, name):
     user = CustomUser.objects.get(username=request.user.username)
-    food_object = get_food_or_meal_by_name(name)
+    food_object = get_food_by_name(name)
     form = AddFoodForm()
 
     if food_object is None:

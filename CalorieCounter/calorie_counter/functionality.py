@@ -5,6 +5,7 @@ from calendar import monthrange
 from CalorieCounter.accounts.models import CustomUser
 from CalorieCounter.core.models import Food, Meal, Exercise
 from CalorieCounter.calorie_counter.models import DailyData
+from CalorieCounter.food_api_request import FoodAPIRequest
 
 
 def get_weekly_data(user):
@@ -91,28 +92,34 @@ def calculate_burnt_calories(user: CustomUser, activity: Exercise, active_minute
 
 
 def food_search_query(searched):
+    result = FoodAPIRequest.get_request(ingredients=searched)
+    if result:
+        return result
+    else:
+        return 'No search results'
+
+
+def create_food_in_db(data):
+    food = Food()
+    food.name = data['parsed'][0]['food']['label']
+    food.calories_per_100g = float(data['parsed'][0]['food']['nutrients']['ENERC_KCAL'])
+    food.protein_per_100g = float(data['parsed'][0]['food']['nutrients']['PROCNT'])
+    food.fats_per_100g = float(data['parsed'][0]['food']['nutrients']['FAT'])
+    food.carbs_per_100g = float(data['parsed'][0]['food']['nutrients']['CHOCDF'])
     try:
-        return Food.objects.get(name=searched)
+        object_db = Food.objects.get(name=food.name)
     except Food.DoesNotExist:
-        searched = Meal.objects.filter(name__icontains=searched)
-        if searched.count() > 0:
-            return searched.first()
-        else:
-            return 'No search results'
+        food.save()
+        return food
+    return object_db
 
 
-def get_food_or_meal_by_name(name):
+def get_food_by_name(name):
     try:
         searched = Food.objects.get(name=name)
-        if searched is not None:
-            return searched
+        return searched
     except Food.DoesNotExist:
-        try:
-            searched = Meal.objects.get(name=name)
-            if searched is not None:
-                return searched
-        except Meal.DoesNotExist:
-            return None
+        return None
 
 
 def activity_search_query(searched):

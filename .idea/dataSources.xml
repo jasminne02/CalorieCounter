@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgres@localhost" uuid="46a852bf-3e89-4ef4-a99a-fd2daf3d0c7c">
+    <data-source source="LOCAL" name="calorie_counter_db@localhost" uuid="1b0f3e89-3529-438c-b59e-1b645643f85b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/calorie_counter_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="895c09e3-1106-49d8-95a6-efbf1835f8db">
+    <data-source source="LOCAL" name="Django default" uuid="cc68380a-8987-4295-821c-baf6dc92cb89">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
